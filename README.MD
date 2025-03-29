@@ -21,4 +21,38 @@ Este programa tem como objetivo monitorar a sustentabilidade pessoal com base em
    - Execute o programa com o comando:
      bash
      python programa_sustentabilidade.py
+
+
+     ## Como Funciona
+
+### 1. Solicitação de Data:
+O programa solicita que o usuário insira a data no formato *DD/MM/AAAA*. Caso o formato seja incorreto, o programa pedirá para tentar novamente até que uma data válida seja informada.
+
+### 2. Consumo de Água:
+O programa solicita a quantidade de água consumida no dia (em litros). Com base no valor inserido, o programa classifica o consumo como:
+- *🟢 Alta sustentabilidade*: Menos de 150 litros.
+- *🟡 Moderada sustentabilidade*: Entre 150 e 200 litros.
+- *🔴 Baixa sustentabilidade*: Acima de 200 litros.
+
+### 3. Consumo de Energia:
+O programa solicita o consumo de energia elétrica em *kWh* e classifica da seguinte forma:
+- *🟢 Alta sustentabilidade*: Menos de 5 kWh.
+- *🟡 Moderada sustentabilidade*: Entre 5 e 10 kWh.
+- *🔴 Baixa sustentabilidade*: Acima de 10 kWh.
+
+### 4. Resíduos Não Recicláveis:
+O programa solicita a quantidade de resíduos não recicláveis gerados (em kg) e também solicita a porcentagem de resíduos reciclados no total. Com base nisso, a classificação de sustentabilidade será:
+- *🟢 Alta sustentabilidade*: Mais de 50% de resíduos reciclados.
+- *🟡 Moderada sustentabilidade*: Entre 20% e 50% de resíduos reciclados.
+- *🔴 Baixa sustentabilidade*: Menos de 20% de resíduos reciclados.
+
+### 5. Meio de Transporte:
+O programa apresenta uma lista de opções de transporte para o usuário escolher:
+- *1. Transporte público (ônibus, metrô, trem)* → *🟢 Alta sustentabilidade*
+- *2. Bicicleta* → *🟢 Alta sustentabilidade*
+- *3. Caminhada* → *🟢 Alta sustentabilidade*
+- *4. Carro (combustível fóssil)* → *🔴 Baixa sustentabilidade*
+- *5. Carro elétrico* → *🟡 Moderada sustentabilidade*
+- *6. Carona compartilhada* → *🟡 Moderada sustentabilidade*
+
      
