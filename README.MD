@@ -55,4 +55,28 @@ O programa apresenta uma lista de opções de transporte para o usuário escolhe
 - *5. Carro elétrico* → *🟡 Moderada sustentabilidade*
 - *6. Carona compartilhada* → *🟡 Moderada sustentabilidade*
 
+## Exemplo de Execução
+
+```bash
+Programa para monitoramento de sustentabilidade pessoal
+Qual a data de hoje? (formato DD/MM/AAAA) 28/03/2025
+Quantos litros de água você consumiu hoje? 'aproximadamente' 120
+Quantos kWh de energia elétrica você consumiu hoje? 'aproximadamente' 8
+Quantos kg de resíduos não recicláveis você gerou hoje? 'aproximadamente' 0.5
+Qual a porcentagem de resíduos reciclados no total? (em %) 30
+Qual o meio de transporte você usou hoje?
+1. Transporte público (ônibus, metrô, trem).
+2. Bicicleta.
+3. Caminhada.
+4. Carro (combustível fósseis).
+5. Carro elétrico.
+6. Carona compartilhada.
+Escolha uma opção (1-6): 3
+
+Quadro de monitoramento de sustentabilidade pessoal:
+
+1. seu consumo de água está em 🟢 Alta sustentabilidade
+2. seu consumo de energia está em 🟡 Moderada sustentabilidade
+3. sua reciclagem está classficada como 🟡 Moderada sustentabilidade
+4. o transporte que você utilizou hoje está classificado como 🟢 Alta sustentabilidade
      
