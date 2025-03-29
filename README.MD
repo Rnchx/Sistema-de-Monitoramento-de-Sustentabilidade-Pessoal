@@ -8,3 +8,17 @@ Este programa tem como objetivo monitorar a sustentabilidade pessoal com base em
 2. *Consumo de Energia*: O programa solicita o número de kWh de energia elétrica consumidos no dia e classifica o consumo em alta, moderada ou baixa sustentabilidade.
 3. *Resíduos Não Recicláveis*: O programa solicita a quantidade de resíduos não recicláveis gerados no dia e calcula o impacto com base na porcentagem de resíduos reciclados em relação ao total.
 4. *Meio de Transporte*: O programa solicita o meio de transporte utilizado no dia e classifica sua sustentabilidade de acordo com o tipo de transporte.
+
+
+## Como Executar
+
+1. *Instale o Python*:
+   - Este programa foi desenvolvido em Python. Se você não tiver o Python instalado, pode baixá-lo e instalá-lo em [python.org](https://www.python.org/).
+
+2. *Execute o Código*:
+   - Abra um terminal ou prompt de comando.
+   - Navegue até o diretório onde o arquivo Python (programa_sustentabilidade.py) está salvo.
+   - Execute o programa com o comando:
+     bash
+     python programa_sustentabilidade.py
+     
