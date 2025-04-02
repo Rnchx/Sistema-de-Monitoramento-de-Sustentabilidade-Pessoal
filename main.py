@@ -1,5 +1,12 @@
 from datetime import datetime
 
+# Função para garantir que a data tenha o formato DD/MM/AAAA
+def formatar_data(data):
+    data = data.replace(".", "/").replace("-", "/")  # Substituir outros delimitadores por "/"
+    if len(data) == 8:  # Caso o usuário digite no formato sem as barras, ex: 01012025
+        data = data[:2] + '/' + data[2:4] + '/' + data[4:]
+    return data
+
 print("Programa para monitoramento de sustentabilidade pessoal")
 
 # Validar a data
@@ -8,6 +15,7 @@ while True:
     
     try:
         todayDate = todayDate.strip()
+        todayDate = formatar_data(todayDate)  # Formatar a data antes de validar
         formatedDate = datetime.strptime(todayDate, "%d/%m/%Y").date()
         if formatedDate != datetime.today().date():
             print("Erro: A data informada não corresponde à data atual!")
@@ -69,7 +77,7 @@ while True:
 # Validar a porcentagem de resíduos reciclados
 while True:
     try:
-        porcentagemDeResiduosRecicladosNoTotal = float(input("Qual a porcentagem de resíduos reciclados no total? (em %) "))
+        percentageOfRecycledWasteInTotal = float(input("Qual a porcentagem de resíduos reciclados no total? (em %) "))
 
         if porcentagemDeResiduosRecicladosNoTotal < 0 or porcentagemDeResiduosRecicladosNoTotal > 100:
             print("Erro: A porcentagem de resíduos reciclados deve ser entre 0% e 100%. Tente novamente.")
@@ -86,13 +94,13 @@ while True:
         print("Digite apenas números para dizer a porcentagem de resíduos reciclados no total!!")
 
 # Escolha do meio de transporte
-print("""
-        Qual o meio de transporte você usou hoje?
-        1. Transporte público (ônibus, metrô, trem).
-        2. Bicicleta.
-        3. Caminhada.
-        4. Carro (combustível fósseis).
-        5. Carro elétrico.
+print(""" 
+        Qual o meio de transporte você usou hoje? 
+        1. Transporte público (ônibus, metrô, trem). 
+        2. Bicicleta. 
+        3. Caminhada. 
+        4. Carro (combustível fósseis). 
+        5. Carro elétrico. 
         6. Carona compartilhada.
       """)
 
