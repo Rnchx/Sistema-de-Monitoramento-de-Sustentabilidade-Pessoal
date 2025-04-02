@@ -1,12 +1,5 @@
 from datetime import datetime
 
-# Função para garantir que a data tenha o formato DD/MM/AAAA
-def formatar_data(data):
-    data = data.replace(".", "/").replace("-", "/")  # Substituir outros delimitadores por "/"
-    if len(data) == 8:  # Caso o usuário digite no formato sem as barras, ex: 01012025
-        data = data[:2] + '/' + data[2:4] + '/' + data[4:]
-    return data
-
 print("Programa para monitoramento de sustentabilidade pessoal")
 
 # Validar a data
@@ -15,7 +8,6 @@ while True:
     
     try:
         todayDate = todayDate.strip()
-        todayDate = formatar_data(todayDate)  # Formatar a data antes de validar
         formatedDate = datetime.strptime(todayDate, "%d/%m/%Y").date()
         if formatedDate != datetime.today().date():
             print("Erro: A data informada não corresponde à data atual!")
@@ -27,17 +19,19 @@ while True:
 # Validar consumo de água
 while True:
     try:
-        QuantidadeDeAguaConsumida = float(input("Quantos litros de água você consumiu hoje? 'aproximadamente' "))
+        AmountOfWaterConsumed = float(input("Quantos litros de água você consumiu hoje? 'aproximadamente' "))
 
-        if QuantidadeDeAguaConsumida < 0:
+        if AmountOfWaterConsumed < 0:
             print("Erro: O consumo de água não pode ser negativo!")
             continue
-        if QuantidadeDeAguaConsumida < 150:
-            consumoAgua = '🟢 Alta sustentabilidade'
-        elif QuantidadeDeAguaConsumida >= 150 and QuantidadeDeAguaConsumida <= 200:
-            consumoAgua = '🟡 Moderada sustentabilidade'
+
+        if AmountOfWaterConsumed < 150:
+            waterConsumption = '🟢 Alta sustentabilidade'
+        elif AmountOfWaterConsumed >= 150 and AmountOfWaterConsumed <= 200:
+            waterConsumption = '🟡 Moderada sustentabilidade'
         else:
-            consumoAgua = '🔴 Baixa sustentabilidade'
+            waterConsumption = '🔴 Baixa sustentabilidade'
+
         break
     except ValueError:
         print("Digite apenas números para dizer os litros usados!!")
@@ -45,18 +39,18 @@ while True:
 # Validar consumo de energia
 while True:
     try:
-        QuantidadeDeEnergiaConsumida = float(input("Quantos kWh de energia elétrica você consumiu hoje? 'aproximadamente' "))
+        AmountOfEnergyConsumed = float(input("Quantos kWh de energia elétrica você consumiu hoje? 'aproximadamente' "))
 
-        if QuantidadeDeEnergiaConsumida < 0:
+        if AmountOfEnergyConsumed < 0:
             print("Erro: O consumo de energia não pode ser negativo!")
             continue
 
-        if QuantidadeDeEnergiaConsumida < 5:
-            consumoEnergia = '🟢 Alta sustentabilidade'
-        elif QuantidadeDeEnergiaConsumida >= 5 and QuantidadeDeEnergiaConsumida <= 10:
-            consumoEnergia = '🟡 Moderada sustentabilidade'
+        if AmountOfEnergyConsumed < 5:
+            energyConsumption = '🟢 Alta sustentabilidade'
+        elif AmountOfEnergyConsumed >= 5 and AmountOfEnergyConsumed <= 10:
+            energyConsumption = '🟡 Moderada sustentabilidade'
         else:
-            consumoEnergia = '🔴 Baixa sustentabilidade'
+            energyConsumption = '🔴 Baixa sustentabilidade'
 
         break
     except ValueError:
@@ -65,9 +59,9 @@ while True:
 # Validar resíduos não recicláveis gerados
 while True:
     try:
-        QuantidadeDeResiduosNaoReciclaveisGerados = float(input("Quantos kg de resíduos não recicláveis você gerou hoje? 'aproximadamente' "))
+        AmountOfNonRecyclabeWasteGenerated = float(input("Quantos kg de resíduos não recicláveis você gerou hoje? 'aproximadamente' "))
 
-        if QuantidadeDeResiduosNaoReciclaveisGerados < 0:
+        if AmountOfNonRecyclabeWasteGenerated < 0:
             print("Erro: O peso dos resíduos não recicláveis não pode ser negativo!")
             continue
         break
@@ -84,39 +78,39 @@ while True:
             continue
 
         if percentageOfRecycledWasteInTotal > 50:
-            classificacaoGasto = '🟢 Alta sustentabilidade'
+            wasteClassification = '🟢 Alta sustentabilidade'
         elif percentageOfRecycledWasteInTotal >= 20 and percentageOfRecycledWasteInTotal <= 50:
-            classificacaoGasto = '🟡 Moderada sustentabilidade'
+            wasteClassification = '🟡 Moderada sustentabilidade'
         else:
-            classificacaoGasto = '🔴 Baixa sustentabilidade'
+            wasteClassification = '🔴 Baixa sustentabilidade'
         break
     except ValueError:
         print("Digite apenas números para dizer a porcentagem de resíduos reciclados no total!!")
 
 # Escolha do meio de transporte
-print(""" 
-        Qual o meio de transporte você usou hoje? 
-        1. Transporte público (ônibus, metrô, trem). 
-        2. Bicicleta. 
-        3. Caminhada. 
-        4. Carro (combustível fósseis). 
-        5. Carro elétrico. 
+print("""
+        Qual o meio de transporte você usou hoje?
+        1. Transporte público (ônibus, metrô, trem).
+        2. Bicicleta.
+        3. Caminhada.
+        4. Carro (combustível fósseis).
+        5. Carro elétrico.
         6. Carona compartilhada.
       """)
 
 while True:
     try:
-        opcaoTransporte = int(input("Escolha uma opção (1-6): "))
+        transportOption = int(input("Escolha uma opção (1-6): "))
         
-        if opcaoTransporte < 1 or opcaoTransporte > 6:
+        if transportOption < 1 or transportOption > 6:
             print("Digite uma opção de transporte que esteja dentro do parâmetro!!")
         else:
-            if opcaoTransporte == 2 or opcaoTransporte == 3:
-                classificacaoTransporte = '🟢 Alta sustentabilidade'
-            elif opcaoTransporte == 5 or opcaoTransporte == 6:
-                classificacaoTransporte = '🟡 Moderada sustentabilidade'
+            if transportOption == 2 or transportOption == 3:
+                transportClassification = '🟢 Alta sustentabilidade'
+            elif transportOption == 5 or transportOption == 6:
+                transportClassification = '🟡 Moderada sustentabilidade'
             else:
-                classificacaoTransporte = '🔴 Baixa sustentabilidade'
+                transportClassification = '🔴 Baixa sustentabilidade'
             break
     except ValueError:
         print("Digite apenas números para dizer a opção de transporte utilizada!!")
@@ -125,11 +119,11 @@ while True:
 print(f"""
 Quadro de monitoramento de sustentabilidade pessoal:
 
-1. Seu consumo de água está em {consumoAgua}
+1. Seu consumo de água está em {waterConsumption}
 
-2. Seu consumo de energia está em {consumoEnergia}
+2. Seu consumo de energia está em {energyConsumption}
 
-3. Sua reciclagem está classificada como {classificacaoGasto}
+3. Sua reciclagem está classificada como {wasteClassification}
 
-4. O transporte que você utilizou hoje está classificado como {classificacaoTransporte}
+4. O transporte que você utilizou hoje está classificado como {transportClassification}
 """)
