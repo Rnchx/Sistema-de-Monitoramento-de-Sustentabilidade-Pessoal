@@ -19,19 +19,17 @@ while True:
 # Validar consumo de água
 while True:
     try:
-        AmountOfWaterConsumed = float(input("Quantos litros de água você consumiu hoje? 'aproximadamente' "))
+        QuantidadeDeAguaConsumida = float(input("Quantos litros de água você consumiu hoje? 'aproximadamente' "))
 
-        if AmountOfWaterConsumed < 0:
+        if QuantidadeDeAguaConsumida < 0:
             print("Erro: O consumo de água não pode ser negativo!")
             continue
-
-        if AmountOfWaterConsumed < 150:
-            waterConsumption = '🟢 Alta sustentabilidade'
-        elif AmountOfWaterConsumed >= 150 and AmountOfWaterConsumed <= 200:
-            waterConsumption = '🟡 Moderada sustentabilidade'
+        if QuantidadeDeAguaConsumida < 150:
+            consumoAgua = '🟢 Alta sustentabilidade'
+        elif QuantidadeDeAguaConsumida >= 150 and QuantidadeDeAguaConsumida <= 200:
+            consumoAgua = '🟡 Moderada sustentabilidade'
         else:
-            waterConsumption = '🔴 Baixa sustentabilidade'
-
+            consumoAgua = '🔴 Baixa sustentabilidade'
         break
     except ValueError:
         print("Digite apenas números para dizer os litros usados!!")
@@ -39,18 +37,18 @@ while True:
 # Validar consumo de energia
 while True:
     try:
-        AmountOfEnergyConsumed = float(input("Quantos kWh de energia elétrica você consumiu hoje? 'aproximadamente' "))
+        QuantidadeDeEnergiaConsumida = float(input("Quantos kWh de energia elétrica você consumiu hoje? 'aproximadamente' "))
 
-        if AmountOfEnergyConsumed < 0:
+        if QuantidadeDeEnergiaConsumida < 0:
             print("Erro: O consumo de energia não pode ser negativo!")
             continue
 
-        if AmountOfEnergyConsumed < 5:
-            energyConsumption = '🟢 Alta sustentabilidade'
-        elif AmountOfEnergyConsumed >= 5 and AmountOfEnergyConsumed <= 10:
-            energyConsumption = '🟡 Moderada sustentabilidade'
+        if QuantidadeDeEnergiaConsumida < 5:
+            consumoEnergia = '🟢 Alta sustentabilidade'
+        elif QuantidadeDeEnergiaConsumida >= 5 and QuantidadeDeEnergiaConsumida <= 10:
+            consumoEnergia = '🟡 Moderada sustentabilidade'
         else:
-            energyConsumption = '🔴 Baixa sustentabilidade'
+            consumoEnergia = '🔴 Baixa sustentabilidade'
 
         break
     except ValueError:
@@ -59,9 +57,9 @@ while True:
 # Validar resíduos não recicláveis gerados
 while True:
     try:
-        AmountOfNonRecyclabeWasteGenerated = float(input("Quantos kg de resíduos não recicláveis você gerou hoje? 'aproximadamente' "))
+        QuantidadeDeResiduosNaoReciclaveisGerados = float(input("Quantos kg de resíduos não recicláveis você gerou hoje? 'aproximadamente' "))
 
-        if AmountOfNonRecyclabeWasteGenerated < 0:
+        if QuantidadeDeResiduosNaoReciclaveisGerados < 0:
             print("Erro: O peso dos resíduos não recicláveis não pode ser negativo!")
             continue
         break
@@ -71,18 +69,18 @@ while True:
 # Validar a porcentagem de resíduos reciclados
 while True:
     try:
-        percentageOfRecycledWasteInTotal = float(input("Qual a porcentagem de resíduos reciclados no total? (em %) "))
+        porcentagemDeResiduosRecicladosNoTotal = float(input("Qual a porcentagem de resíduos reciclados no total? (em %) "))
 
-        if percentageOfRecycledWasteInTotal < 0 or percentageOfRecycledWasteInTotal > 100:
+        if porcentagemDeResiduosRecicladosNoTotal < 0 or porcentagemDeResiduosRecicladosNoTotal > 100:
             print("Erro: A porcentagem de resíduos reciclados deve ser entre 0% e 100%. Tente novamente.")
             continue
 
-        if percentageOfRecycledWasteInTotal > 50:
-            wasteClassification = '🟢 Alta sustentabilidade'
-        elif percentageOfRecycledWasteInTotal >= 20 and percentageOfRecycledWasteInTotal <= 50:
-            wasteClassification = '🟡 Moderada sustentabilidade'
+        if porcentagemDeResiduosRecicladosNoTotal > 50:
+            classificacaoGasto = '🟢 Alta sustentabilidade'
+        elif porcentagemDeResiduosRecicladosNoTotal >= 20 and porcentagemDeResiduosRecicladosNoTotal <= 50:
+            classificacaoGasto = '🟡 Moderada sustentabilidade'
         else:
-            wasteClassification = '🔴 Baixa sustentabilidade'
+            classificacaoGasto = '🔴 Baixa sustentabilidade'
         break
     except ValueError:
         print("Digite apenas números para dizer a porcentagem de resíduos reciclados no total!!")
@@ -100,17 +98,17 @@ print("""
 
 while True:
     try:
-        transportOption = int(input("Escolha uma opção (1-6): "))
+        opcaoTransporte = int(input("Escolha uma opção (1-6): "))
         
-        if transportOption < 1 or transportOption > 6:
+        if opcaoTransporte < 1 or opcaoTransporte > 6:
             print("Digite uma opção de transporte que esteja dentro do parâmetro!!")
         else:
-            if transportOption == 2 or transportOption == 3:
-                transportClassification = '🟢 Alta sustentabilidade'
-            elif transportOption == 5 or transportOption == 6:
-                transportClassification = '🟡 Moderada sustentabilidade'
+            if opcaoTransporte == 2 or opcaoTransporte == 3:
+                classificacaoTransporte = '🟢 Alta sustentabilidade'
+            elif opcaoTransporte == 5 or opcaoTransporte == 6:
+                classificacaoTransporte = '🟡 Moderada sustentabilidade'
             else:
-                transportClassification = '🔴 Baixa sustentabilidade'
+                classificacaoTransporte = '🔴 Baixa sustentabilidade'
             break
     except ValueError:
         print("Digite apenas números para dizer a opção de transporte utilizada!!")
@@ -119,11 +117,11 @@ while True:
 print(f"""
 Quadro de monitoramento de sustentabilidade pessoal:
 
-1. Seu consumo de água está em {waterConsumption}
+1. Seu consumo de água está em {consumoAgua}
 
-2. Seu consumo de energia está em {energyConsumption}
+2. Seu consumo de energia está em {consumoEnergia}
 
-3. Sua reciclagem está classificada como {wasteClassification}
+3. Sua reciclagem está classificada como {classificacaoGasto}
 
-4. O transporte que você utilizou hoje está classificado como {transportClassification}
+4. O transporte que você utilizou hoje está classificado como {classificacaoTransporte}
 """)
