@@ -79,13 +79,13 @@ while True:
     try:
         percentageOfRecycledWasteInTotal = float(input("Qual a porcentagem de resíduos reciclados no total? (em %) "))
 
-        if porcentagemDeResiduosRecicladosNoTotal < 0 or porcentagemDeResiduosRecicladosNoTotal > 100:
+        if percentageOfRecycledWasteInTotal < 0 or percentageOfRecycledWasteInTotal > 100:
             print("Erro: A porcentagem de resíduos reciclados deve ser entre 0% e 100%. Tente novamente.")
             continue
 
-        if porcentagemDeResiduosRecicladosNoTotal > 50:
+        if percentageOfRecycledWasteInTotal > 50:
             classificacaoGasto = '🟢 Alta sustentabilidade'
-        elif porcentagemDeResiduosRecicladosNoTotal >= 20 and porcentagemDeResiduosRecicladosNoTotal <= 50:
+        elif percentageOfRecycledWasteInTotal >= 20 and percentageOfRecycledWasteInTotal <= 50:
             classificacaoGasto = '🟡 Moderada sustentabilidade'
         else:
             classificacaoGasto = '🔴 Baixa sustentabilidade'
