@@ -33,7 +33,11 @@ while True:
     try:
         AmountOfWaterConsumed = float(input("Quantos litros de água você consumiu hoje? "))
         if AmountOfWaterConsumed < 0:
-            print("Erro: O consumo de água não pode ser negativo!")
+            print("O consumo de água não pode ser negativo!")
+            continue
+
+        if AmountOfWaterConsumed > 3000:
+            print("Digite um valor que seja coerente/verdadeiro de consumo de água!")
             continue
 
         if AmountOfWaterConsumed < 150:
