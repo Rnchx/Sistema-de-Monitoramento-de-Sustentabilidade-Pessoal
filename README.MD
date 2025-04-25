@@ -55,6 +55,20 @@ O programa apresenta uma lista de opções de transporte para o usuário escolhe
 - *5. Carro elétrico* → *🟡 Moderada sustentabilidade*
 - *6. Carona compartilhada* → *🟡 Moderada sustentabilidade*
 
+## Como Executar
+
+### 1. Instalar o Python
+
+Este programa foi desenvolvido em Python. Se você não tiver o Python instalado, pode baixá-lo e instalá-lo em [python.org](https://www.python.org/).
+
+### 2. Instalar Dependências
+
+Além do Python, você precisa instalar o pacote `mysql-connector-python` para conectar o programa ao banco de dados MySQL. Execute o seguinte comando para instalar a biblioteca:
+
+
+pip install mysql-connector-python
+
+
 ## Exemplo de Execução
 
 ```bash
@@ -79,4 +93,3 @@ Quadro de monitoramento de sustentabilidade pessoal:
 2. seu consumo de energia está em 🟡 Moderada sustentabilidade
 3. sua reciclagem está classficada como 🟡 Moderada sustentabilidade
 4. o transporte que você utilizou hoje está classificado como 🟢 Alta sustentabilidade
-     

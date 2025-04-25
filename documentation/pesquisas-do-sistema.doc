@@ -1,0 +1,14 @@
+Parâmetros para a sustentabilidade
+
+Funcionais:
+-	Um requisito funcional, é o que o sistema deve fazer.
+-	Cadastro de iniciativas sustentáveis – Permitir que empresas ou indivíduos registrem projetos e práticas sustentáveis.
+-	Relatórios e indicadores ambientais – Gerar gráficos e relatórios sobre sustentabilidade (ex: pegada de carbono, eficiência energética).
+-	Sistema de feedback – Permitir que usuários avaliem e compartilhem boas 
+práticas sustentáveis.
+
+Requisitos não funcionais:
+-	Requisitos não funcionais, é como o sistema deve operar.
+-	Escalabilidade – Deve suportar um grande número de usuários e volumes de dados sem perda de desempenho.
+-	Disponibilidade – Deve estar acessível 24/7, com mínima taxa de falhas.
+-	Compatibilidade – Funcionar em diferentes dispositivos (mobile, desktop, tablets).
