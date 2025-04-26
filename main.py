@@ -4,16 +4,27 @@ import mysql.connector
 print("Programa para monitoramento de sustentabilidade pessoal")
 
 # Conexão com o banco de dados MySQL
+
+# conn = mysql.connector.connect(
+#     host="localhost",
+#     user="root",
+#     password="6807",
+#     database="sustentabilidade"
+# )
+# cursor = conn.cursor()
+
+# conexão com o banco de dados MYSQL -- TESTE
+
 conn = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="6807",
-    database="sustentabilidade"
+    host="172.16.12.14",
+    user="BD240225246",
+    password="Gcgts5",
+    database="BD240225246"
 )
 cursor = conn.cursor()
 
 # Nomoe do usuário
-usuario = input("Digite seu nome: ").strip()
+nome = input("Digite seu nome: ").strip()
 
 # Validar a data
 while True:
@@ -157,7 +168,7 @@ Quadro de monitoramento de sustentabilidade pessoal:
 insert_query = """
 INSERT INTO sustentabilidade_pessoal (
     data_registro,
-    usuario,
+    nome,
     consumo_agua,
     consumo_energia,
     residuos_nao_reciclaveis,
@@ -168,12 +179,12 @@ INSERT INTO sustentabilidade_pessoal (
 
 data = (
     formatedDate,
-    usuario,
+    nome,
     AmountOfWaterConsumed,
     AmountOfEnergyConsumed,
     AmountOfNonRecyclabeWasteGenerated,
     percentageOfRecycledWasteInTotal,
-    transporte
+    transportOption
 )
 
 cursor.execute(insert_query, data)
