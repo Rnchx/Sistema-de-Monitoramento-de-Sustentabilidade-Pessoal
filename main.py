@@ -58,7 +58,6 @@ while True:
         else:
             waterConsumption = '🔴 Baixa sustentabilidade'
 
-        print(f"Classificação do consumo de água: {waterConsumption}")
         break
     except ValueError:
         print("Digite apenas números!")
@@ -71,14 +70,13 @@ while True:
             print("Erro: O consumo de energia não pode ser negativo!")
             continue
 
-        if AmountOfEnergyConsumed < 5:
+        if AmountOfEnergyConsumed < 50:
             energyConsumption = '🟢 Alta sustentabilidade'
-        elif AmountOfEnergyConsumed <= 10:
+        elif AmountOfEnergyConsumed <= 100:
             energyConsumption = '🟡 Moderada sustentabilidade'
         else:
             energyConsumption = '🔴 Baixa sustentabilidade'
 
-        print(f"Classificação do consumo de energia: {energyConsumption}")
         break
     except ValueError:
         print("Digite apenas números!")
@@ -109,7 +107,6 @@ while True:
         else:
             wasteClassification = '🔴 Baixa sustentabilidade'
 
-        print(f"Classificação da reciclagem: {wasteClassification}")
         break
     except ValueError:
         print("Digite apenas números!")
@@ -149,7 +146,6 @@ while True:
         }
         transporte = transportOptionsDict[transportOption]
 
-        print(f"Classificação do transporte: {transportClassification}")
         break
     except ValueError:
         print("Digite apenas números!")
@@ -184,7 +180,7 @@ data = (
     AmountOfEnergyConsumed,
     AmountOfNonRecyclabeWasteGenerated,
     percentageOfRecycledWasteInTotal,
-    transportOption
+    transporte
 )
 
 cursor.execute(insert_query, data)
