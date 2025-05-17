@@ -23,8 +23,17 @@ conn = mysql.connector.connect(
 )
 cursor = conn.cursor()
 
-# Nomoe do usuário
-nome = input("Digite seu nome: ").strip()
+# Nome do usuário
+while True:
+    try:
+        nome = input("Digite seu nome: ").strip()
+    except ValueError:
+        print("Por favor digite apenas valores válidos!")
+    if nome == '':
+        print("Por favor digite algo no campo de inserir o nome!")   
+    else:
+        break
+
 
 # Validar a data
 while True:
@@ -43,13 +52,12 @@ while True:
 while True:
     try:
         AmountOfWaterConsumed = float(input("Quantos litros de água você consumiu hoje? "))
+
         if AmountOfWaterConsumed < 0:
             print("O consumo de água não pode ser negativo!")
-            continue
 
         if AmountOfWaterConsumed > 3000:
             print("Digite um valor que seja coerente/verdadeiro de consumo de água!")
-            continue
 
         if AmountOfWaterConsumed < 150:
             waterConsumption = '🟢 Alta sustentabilidade'
@@ -59,8 +67,9 @@ while True:
             waterConsumption = '🔴 Baixa sustentabilidade'
 
         break
-    except ValueError:
-        print("Digite apenas números!")
+        
+    except ValueError:    
+        print("Digite valores que correspondam a quantidade de litros de água consumidos no seu dia!")
 
 # Validar consumo de energia
 while True:
@@ -68,7 +77,6 @@ while True:
         AmountOfEnergyConsumed = float(input("Quantos kWh de energia elétrica você consumiu hoje? "))
         if AmountOfEnergyConsumed < 0:
             print("Erro: O consumo de energia não pode ser negativo!")
-            continue
 
         if AmountOfEnergyConsumed < 50:
             energyConsumption = '🟢 Alta sustentabilidade'
@@ -79,7 +87,7 @@ while True:
 
         break
     except ValueError:
-        print("Digite apenas números!")
+        print("Digite valores que correspondam a quantidade de energia consumidos no seu dia!")
 
 # Validar resíduos não recicláveis
 while True:
@@ -90,7 +98,7 @@ while True:
             continue
         break
     except ValueError:
-        print("Digite apenas números!")
+        print("Digite valores que correspondam a quantidade de kgs de resíduos não recicláveis gerados no seu dia!")
 
 # Validar porcentagem reciclada
 while True:
@@ -109,7 +117,7 @@ while True:
 
         break
     except ValueError:
-        print("Digite apenas números!")
+        print("Digite valores que correspondam a porcentagem de resíduos recicláveis no total gerados no seu dia!")
 
 # Escolha do meio de transporte
 print("""
