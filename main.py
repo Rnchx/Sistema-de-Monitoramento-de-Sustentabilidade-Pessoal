@@ -5,10 +5,10 @@ import mysql.connector
 # Conexão com Banco de Dados
 def conectar():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="6807",
-        database="sustentabilidade"
+        host="172.16.12.14",
+        user="BD240225246",
+        password="Gcgts5",
+        database="BD240225246"
     )
 
 # Classificação de água
@@ -29,7 +29,7 @@ def classificar_energia(valor):
     else:
         return '🔴 Baixa sustentabilidade'
 
-# Classificação de residuos
+# Classificação de resíduos
 def classificar_residuos(valor):
     if valor > 50:
         return '🟢 Alta sustentabilidade'
@@ -61,47 +61,56 @@ def inserir():
     conn = conectar()
     cursor = conn.cursor()
 
-    import re
-
-def inserir():
-    conn = conectar()
-    cursor = conn.cursor()
-
     while True:
-        usuario = input("Nome: ").strip()
-        if not usuario:
+        nome = input("Nome: ").strip()
+        if not nome:
             print("❌ Nome não pode ser vazio.")
-        elif not re.match(r"^[A-Za-zÀ-ÿ\s]+$", usuario):
+        elif not re.match(r"^[A-Za-zÀ-ÿ\s]+$", nome):
             print("❌ Nome inválido. Use apenas letras e espaços, sem números.")
         else:
             break
 
     while True:
+        data_input = input("Data do monitoramento (DD/MM/AAAA): ")
         try:
-            data_input = input("Data do monitoramento (DD/MM/AAAA): ")
-            hoje = datetime.strptime(data_input, "%d/%m/%Y").strftime('%Y-%m-%d')
+            data_monitoramento = datetime.strptime(data_input, "%d/%m/%Y").date()
+            hoje = datetime.now().date()
+            if data_monitoramento != hoje:
+                print(f"❌ Data inválida! Só é permitido inserir dados para a data de hoje ({hoje.strftime('%d/%m/%Y')}).")
+                continue
+            # Data é exatamente hoje
+            data_formatada = data_monitoramento.strftime('%Y-%m-%d')
             break
         except ValueError:
-            print("❌ Data inválida! Use o formato DD/MM/AAAA.")
+            print("❌ Data inválida! Use o formato DD/MM/AAAA e uma data válida.")
 
     while True:
         try:
             agua = float(input("Consumo de água (L): "))
-            break
+            if agua < 0:
+                print("❌ O consumo de água não pode ser negativo.")
+            else:
+                break
         except ValueError:
             print("❌ Digite um número válido para o consumo de água.")
 
     while True:
         try:
             energia = float(input("Consumo de energia (kWh): "))
-            break
+            if energia < 0:
+                print("❌ O consumo de energia não pode ser negativo.")
+            else:
+                break
         except ValueError:
             print("❌ Digite um número válido para o consumo de energia.")
 
     while True:
         try:
             residuos = float(input("Resíduos não recicláveis (kg): "))
-            break
+            if residuos < 0:
+                print("❌ A quantidade de resíduos não pode ser negativa.")
+            else:
+                break
         except ValueError:
             print("❌ Digite um número válido para resíduos.")
 
@@ -146,17 +155,16 @@ def inserir():
 
     cursor.execute("""
         INSERT INTO sustentabilidade_pessoal (
-            data_registro, usuario, consumo_agua, consumo_energia,
+            data_registro, nome, consumo_agua, consumo_energia,
             residuos_nao_reciclaveis, percentual_reciclados, transporte
         ) VALUES (%s, %s, %s, %s, %s, %s, %s)
-    """, (hoje, usuario, agua, energia, residuos, reciclado, transporte))
+    """, (data_formatada, nome, agua, energia, residuos, reciclado, transporte))
 
     conn.commit()
-    print("✅ Dados inseridos com sucesso!")
+    print("✅ Dados do monitoramento registrados com sucesso!")
     cursor.close()
     conn.close()
 
-# Alteração de dados
 def alterar():
     conn = conectar()
     cursor = conn.cursor()
@@ -178,14 +186,46 @@ def alterar():
         else:
             print("❌ Campo inválido.")
 
-    while True:
-        novo_valor = input("Novo valor: ")
-        try:
-            if campo != 'transporte':
+    if campo == 'transporte':
+        transportes = {
+            1: "Transporte público",
+            2: "Bicicleta",
+            3: "Caminhada",
+            4: "Carro (combustível fóssil)",
+            5: "Carro elétrico",
+            6: "Carona compartilhada"
+        }
+        while True:
+            print("""
+            Transporte:
+            1. Transporte público
+            2. Bicicleta
+            3. Caminhada
+            4. Carro (combustível fóssil)
+            5. Carro elétrico
+            6. Carona compartilhada
+            """)
+            try:
+                escolha = int(input("Escolha a nova opção de transporte: "))
+                if escolha in transportes:
+                    novo_valor = transportes[escolha]
+                    break
+                else:
+                    print("❌ Escolha uma opção de 1 a 6.")
+            except ValueError:
+                print("❌ Digite apenas números entre 1 e 6.")
+    else:
+        # Para os outros campos, pedir o novo valor numérico
+        while True:
+            novo_valor = input("Novo valor: ")
+            try:
                 novo_valor = float(novo_valor)
-            break
-        except ValueError:
-            print("❌ Digite um número válido para esse campo.")
+                if novo_valor < 0:
+                    print("❌ Valor não pode ser negativo.")
+                else:
+                    break
+            except ValueError:
+                print("❌ Digite um número válido para esse campo.")
 
     try:
         cursor.execute(f"UPDATE sustentabilidade_pessoal SET {campo} = %s WHERE id = %s", (novo_valor, id_reg))
@@ -251,7 +291,6 @@ def medias():
         print(f"Energia: {m[1]:.2f} kWh - {classificar_energia(m[1])}")
         print(f"Resíduos: {m[2]:.2f} kg")
         print(f"Reciclado: {m[3]:.2f}% - {classificar_reciclado(m[3])}")
-
     else:
         print("Não há dados suficientes para calcular as médias.")
     cursor.close()
@@ -281,4 +320,5 @@ def menu():
         else:
             print("❌ Opção inválida. Escolha de 1 a 6.")
 
-menu()
+if __name__ == "__main__":
+    menu()
